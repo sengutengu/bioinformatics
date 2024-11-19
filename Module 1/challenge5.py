@@ -1,0 +1,21 @@
+from bioinformatics_module import find_clumps, space_join
+
+
+f = open("E_coli.txt", "r")
+genome = f.read()
+f.close()
+
+k = 9
+L = 500
+t = 3
+
+
+"""
+genome = "CCACGCGGTGTACGCTGCAAAAAGCCTTGCTGAATCAAATAAGGTTCCAGCACATCCTCAATGGTTTCACGTTCTTCGCCAATGGCTGCCGCCAGGTTATCCAGACCTACAGGTCCACCAAAGAACTTATCGATTACCGCCAGCAACAATTTGCGGTCCATATAATCGAAACCTTCAGCATCGACATTCAACATATCCAGCG"
+k = 3
+L = 25
+t = 3
+"""
+
+
+print(len(find_clumps(genome, k, L, t)))
