@@ -5,14 +5,15 @@ result_handle = NCBIWWW.qblast("blastn", "nt", fasta_string)
 blast_record = NCBIXML.read(result_handle)
 print(len(blast_record.alignments))
 
-E_VALUE_THRESH = 0.01
+
+min_e = 100
+min_title = ""
 for alignment in blast_record.alignments:
     for hsp in alignment.hsps:
-        if hsp.expect < E_VALUE_THRESH:
-            print("***ALIGNMENT***")
-            print(f'sequence: {alignment.title}')
-            print(f'length: {alignment.length}')
-            print(f'e value: {hsp.expect}')
-            print(hsp.query)
-            print(hsp.match)
-            print(hsp.sbjct)
+        if hsp.expect < min_e:
+            min_e = hsp.expect
+            min_title = alignment.title
+
+    
+print(min_title)
+print(min_e)
